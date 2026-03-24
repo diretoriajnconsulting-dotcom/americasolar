@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+@theme {
+  --color-surface-dim: #090e1c;
+  --color-surface-low: #121826;
+  --color-surface-container: #1b2131;
+  --color-surface-high: #242b3d;
+  --color-surface-highest: #2d354a;
+  
+  --color-primary-base: #ffce00;
+  --color-primary-hover: #ffe047;
+  --color-on-primary: #3c2f00;
+  
+  --color-tertiary-base: #85d5ff;
+  
+  --color-text-body: #ffffff;
+  --color-text-muted: #c4cce0;
+
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Manrope", sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-surface-dim);
+    color: var(--color-text-body);
+    font-family: var(--font-body);
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-surface-highest/40 backdrop-blur-xl border border-white/5 shadow-2xl;
+  }
+  .glass-card {
+    @apply bg-surface-container/60 backdrop-blur-md border border-white/5;
+  }
+}
