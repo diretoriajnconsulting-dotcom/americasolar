@@ -14,10 +14,10 @@ import {
   Briefcase,
   Package,
   ArrowLeft,
+  Send,
 } from 'lucide-react'
 import Link from 'next/link'
 import { submitDiagnostic } from '../actions'
-import { Button } from '@/components/ui/Button'
 
 // ─── Tipos ────────────────────────────────────────────────────────────────────
 interface DiagnosticoFormProps {
@@ -25,15 +25,15 @@ interface DiagnosticoFormProps {
   productName?: string | null
 }
 
-// ─── Helper: classe base para os inputs ──────────────────────────────────────
+// ─── Estilos base (design branco/azul) ───────────────────────────────────────
 const inputClass =
-  'w-full px-4 py-3 bg-surface-lowest/50 border border-white/10 rounded-xl text-sm text-text-body ' +
-  'focus:ring-2 focus:ring-primary-base focus:border-transparent ' +
-  'outline-none transition-all placeholder:text-text-muted/60'
+  'w-full px-4 py-3 bg-white border border-[#E2E8F0] rounded-[12px] text-sm text-black ' +
+  'focus:ring-2 focus:ring-[#1B84FE]/30 focus:border-[#1B84FE] ' +
+  'outline-none transition-all placeholder:text-[#9CA3AF]'
 
-const labelClass = 'block text-sm font-medium text-text-muted mb-1.5'
+const labelClass = 'block text-sm font-heading font-semibold text-black mb-1.5'
 
-// ─── Componente: Campo com ícone ──────────────────────────────────────────────
+// ─── Campo com ícone ──────────────────────────────────────────────────────────
 function InputField({
   id,
   label,
@@ -53,11 +53,11 @@ function InputField({
       <label htmlFor={id} className={labelClass}>
         {label}
         {optional && (
-          <span className="text-slate-400 font-normal ml-1">(Opcional)</span>
+          <span className="text-[#9CA3AF] font-normal ml-1 text-xs">(Opcional)</span>
         )}
       </label>
       <div className="relative">
-        <Icon className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+        <Icon className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9CA3AF] pointer-events-none" />
         <input
           id={id}
           className={`${inputClass} pl-10`}
@@ -69,7 +69,7 @@ function InputField({
   )
 }
 
-// ─── Componente: Select com ícone ─────────────────────────────────────────────
+// ─── Select com ícone ─────────────────────────────────────────────────────────
 function SelectField({
   id,
   label,
@@ -85,11 +85,9 @@ function SelectField({
 }) {
   return (
     <div>
-      <label htmlFor={id} className={labelClass}>
-        {label}
-      </label>
+      <label htmlFor={id} className={labelClass}>{label}</label>
       <div className="relative">
-        <Icon className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none z-10" />
+        <Icon className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9CA3AF] pointer-events-none z-10" />
         <select
           id={id}
           name={id}
@@ -106,8 +104,8 @@ function SelectField({
 // ─── Componente Principal ──────────────────────────────────────────────────────
 export default function DiagnosticoForm({ productId, productName }: DiagnosticoFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSuccess, setIsSuccess] = useState(false)
-  const [errorMsg, setErrorMsg] = useState<string | null>(null)
+  const [isSuccess, setIsSuccess]       = useState(false)
+  const [errorMsg, setErrorMsg]         = useState<string | null>(null)
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -115,9 +113,7 @@ export default function DiagnosticoForm({ productId, productName }: DiagnosticoF
     setErrorMsg(null)
 
     const formData = new FormData(event.currentTarget)
-
-    // Injetar campos de produto se vieram da URL
-    if (productId) formData.set('product_id', productId)
+    if (productId)   formData.set('product_id',   productId)
     if (productName) formData.set('product_name', productName)
 
     const result = await submitDiagnostic(formData)
@@ -133,102 +129,99 @@ export default function DiagnosticoForm({ productId, productName }: DiagnosticoF
   return (
     <div className="min-h-[85vh] flex items-start md:items-center justify-center py-12 px-4">
       <div className="w-full max-w-2xl">
-        {/* Breadcrumb */}
+
+        {/* Voltar ao catálogo */}
         <Link
           href="/catalogo"
-          className="inline-flex items-center gap-1.5 text-sm font-medium text-text-muted/60 hover:text-primary-base
-                     transition-colors mb-8 group tracking-wide lowercase"
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-[#4B5563] hover:text-[#1B84FE] transition-colors mb-8 group"
         >
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
-          voltar ao catálogo
+          Voltar ao Catálogo
         </Link>
 
-        <div className="glass-panel rounded-2xl shadow-2xl border border-white/10 overflow-hidden relative">
-          {/* Subtle glow effect behind form */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-primary-base/5 rounded-full blur-[100px] pointer-events-none" />
+        <div className="bg-white border border-[#E2E8F0] rounded-2xl shadow-lg overflow-hidden">
           <AnimatePresence mode="wait">
             {!isSuccess ? (
               <motion.div
                 key="form"
-                initial={{ opacity: 0, x: 24 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -24 }}
-                transition={{ duration: 0.35, ease: 'easeOut' }}
-                className="relative z-10"
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -16 }}
+                transition={{ duration: 0.3, ease: 'easeOut' }}
               >
-                {/* Header do formulário */}
-                <div className="bg-surface-elevated/80 border-b border-white/5 px-8 py-7 backdrop-blur-sm">
+                {/* Cabeçalho do formulário */}
+                <div className="bg-[#0A1628] px-8 py-7">
                   <div className="flex items-center gap-4 mb-2">
-                    <div className="w-10 h-10 bg-surface-lowest/80 border border-white/10 shadow-inner rounded-xl flex items-center justify-center">
-                      <Zap className="w-5 h-5 text-primary-base drop-shadow-[0_0_8px_rgba(238,194,0,0.6)]" />
+                    <div className="w-10 h-10 bg-[#1B84FE]/20 border border-[#1B84FE]/30 rounded-xl flex items-center justify-center">
+                      <Zap className="w-5 h-5 text-[#1B84FE]" />
                     </div>
-                    <h1 className="text-2xl font-display font-bold text-text-body tracking-tight">
+                    <h1
+                      className="font-heading font-bold text-white"
+                      style={{ fontSize: '22px', fontFamily: 'var(--font-heading)' }}
+                    >
                       Diagnóstico de Carga
                     </h1>
                   </div>
-                  <p className="text-text-muted text-sm leading-relaxed mt-3">
+                  <p
+                    className="text-white/60 leading-relaxed mt-3"
+                    style={{ fontSize: '14px', fontFamily: 'var(--font-body)' }}
+                  >
                     Preencha os dados técnicos da sua demanda. Nossa equipe de
                     engenharia elaborará a proposta ideal para o seu projeto.
                   </p>
                 </div>
 
-                {/* Corpo do formulário */}
+                {/* Corpo */}
                 <form onSubmit={handleSubmit} className="px-8 py-8 space-y-8">
-                  {/* Campo de produto de interesse (somente leitura) */}
+
+                  {/* Produto de interesse (somente leitura) */}
                   {productName && (
                     <motion.div
                       initial={{ opacity: 0, y: -8 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="flex items-center gap-3 bg-surface-elevated/50 border border-white/10
-                                 rounded-xl px-4 py-3 shadow-inner"
+                      className="flex items-center gap-3 bg-[#EBF3FF] border border-[#1B84FE]/20 rounded-xl px-4 py-3"
                     >
-                      <Package className="w-4 h-4 text-primary-base shrink-0 drop-shadow-[0_0_5px_rgba(238,194,0,0.5)]" />
+                      <Package className="w-4 h-4 text-[#1B84FE] shrink-0" />
                       <div>
-                        <p className="text-[11px] text-text-muted font-display uppercase tracking-widest mb-0.5">
+                        <p className="text-[11px] text-[#1B84FE] font-heading font-semibold uppercase tracking-widest mb-0.5">
                           Produto de Interesse
                         </p>
-                        <p className="text-sm font-semibold text-text-body">
-                          {productName}
-                        </p>
+                        <p className="text-sm font-semibold text-black">{productName}</p>
                       </div>
                     </motion.div>
                   )}
 
-                  {/* ── Seção: Dados de Contato ─────────────────────────── */}
+                  {/* ── Dados de Contato ──────────────────────────────────── */}
                   <div>
-                    <h3 className="text-[11px] font-display font-semibold tracking-widest text-primary-base uppercase mb-5 flex items-center gap-2">
-                      <span className="w-4 h-px bg-primary-base/30"></span>
+                    <h3 className="text-[11px] font-heading font-semibold tracking-widest text-[#1B84FE] uppercase mb-5 flex items-center gap-2">
+                      <span className="w-4 h-px bg-[#1B84FE]/30" />
                       Dados de Contato
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <InputField
-                        id="name"
-                        name="name"
+                        id="name" name="name"
                         label="Nome Completo"
                         icon={User}
                         placeholder="Seu nome completo"
                         required
                       />
                       <InputField
-                        id="company"
-                        name="company"
+                        id="company" name="company"
                         label="Empresa"
                         icon={Building2}
                         placeholder="Nome da empresa"
                         optional
                       />
                       <InputField
-                        id="email"
-                        name="email"
-                        label="E-mail Corporativo"
+                        id="email" name="email"
+                        label="E-mail"
                         icon={Mail}
                         type="email"
                         placeholder="seu@email.com.br"
                         required
                       />
                       <InputField
-                        id="whatsapp"
-                        name="whatsapp"
+                        id="whatsapp" name="whatsapp"
                         label="WhatsApp"
                         icon={MessageCircle}
                         type="tel"
@@ -239,18 +232,17 @@ export default function DiagnosticoForm({ productId, productName }: DiagnosticoF
                   </div>
 
                   {/* Divisor */}
-                  <div className="border-t border-white/5" />
+                  <div className="border-t border-[#E2E8F0]" />
 
-                  {/* ── Seção: Especificações Técnicas ──────────────────── */}
+                  {/* ── Especificações Técnicas ───────────────────────────── */}
                   <div>
-                    <h3 className="text-[11px] font-display font-semibold tracking-widest text-primary-base uppercase mb-5 flex items-center gap-2">
-                      <span className="w-4 h-px bg-primary-base/30"></span>
+                    <h3 className="text-[11px] font-heading font-semibold tracking-widest text-[#1B84FE] uppercase mb-5 flex items-center gap-2">
+                      <span className="w-4 h-px bg-[#1B84FE]/30" />
                       Especificações Técnicas
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <InputField
-                        id="demand_kva"
-                        name="demand_kva"
+                        id="demand_kva" name="demand_kva"
                         label="Demanda de Energia (KVA)"
                         icon={Activity}
                         placeholder="Ex: 500 KVA"
@@ -263,11 +255,11 @@ export default function DiagnosticoForm({ productId, productName }: DiagnosticoF
                         icon={Layers}
                         required
                       >
-                        <option className="bg-surface-dim text-white" value="">Selecione o estágio...</option>
-                        <option className="bg-surface-dim text-white" value="Planejamento">Planejamento / Estudo</option>
-                        <option className="bg-surface-dim text-white" value="Execução">Execução da Obra</option>
-                        <option className="bg-surface-dim text-white" value="Planta Pronta">Planta Pronta / Instalação</option>
-                        <option className="bg-surface-dim text-white" value="Emergencial">Emergencial / Retrofit</option>
+                        <option value="">Selecione o estágio...</option>
+                        <option value="Planejamento">Planejamento / Estudo</option>
+                        <option value="Execução">Execução da Obra</option>
+                        <option value="Planta Pronta">Planta Pronta / Instalação</option>
+                        <option value="Emergencial">Emergencial / Retrofit</option>
                       </SelectField>
 
                       <div className="md:col-span-2">
@@ -277,34 +269,29 @@ export default function DiagnosticoForm({ productId, productName }: DiagnosticoF
                           icon={Briefcase}
                           required
                         >
-                          <option className="bg-surface-dim text-white" value="">Selecione o segmento...</option>
-                          <option className="bg-surface-dim text-white" value="Indústria">Indústria</option>
-                          <option className="bg-surface-dim text-white" value="Shopping Center">Shopping Center</option>
-                          <option className="bg-surface-dim text-white" value="Energia Renovável">
-                            Energia Renovável (Solar / Eólica)
-                          </option>
-                          <option className="bg-surface-dim text-white" value="Construção Civil">Construção Civil</option>
-                          <option className="bg-surface-dim text-white" value="Data Center">Data Center / TI</option>
-                          <option className="bg-surface-dim text-white" value="Agronegócio">Agronegócio</option>
-                          <option className="bg-surface-dim text-white" value="Mineração">Mineração</option>
-                          <option className="bg-surface-dim text-white" value="Concessionária">
-                            Concessionária de Energia
-                          </option>
-                          <option className="bg-surface-dim text-white" value="Outros">Outros</option>
+                          <option value="">Selecione o segmento...</option>
+                          <option value="Indústria">Indústria</option>
+                          <option value="Shopping Center">Shopping Center</option>
+                          <option value="Energia Renovável">Energia Renovável (Solar / Eólica)</option>
+                          <option value="Construção Civil">Construção Civil</option>
+                          <option value="Data Center">Data Center / TI</option>
+                          <option value="Agronegócio">Agronegócio</option>
+                          <option value="Mineração">Mineração</option>
+                          <option value="Concessionária">Concessionária de Energia</option>
+                          <option value="Outros">Outros</option>
                         </SelectField>
                       </div>
                     </div>
                   </div>
 
-                  {/* ── Erro de validação ───────────────────────────────── */}
+                  {/* Erro de validação */}
                   <AnimatePresence>
                     {errorMsg && (
                       <motion.div
                         initial={{ opacity: 0, y: -8 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0 }}
-                        className="flex items-start gap-2 bg-red-900/20 border border-red-500/30
-                                   text-red-400 text-sm rounded-xl px-4 py-3"
+                        className="flex items-start gap-2 bg-red-50 border border-red-200 text-red-600 text-sm rounded-xl px-4 py-3"
                       >
                         <span className="shrink-0 mt-0.5">⚠</span>
                         <span>{errorMsg}</span>
@@ -312,103 +299,91 @@ export default function DiagnosticoForm({ productId, productName }: DiagnosticoF
                     )}
                   </AnimatePresence>
 
-                  {/* ── Botão de submissão ──────────────────────────────── */}
-                  <Button
+                  {/* Botão Enviar */}
+                  <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-3.5 text-base flex items-center justify-center gap-2"
+                    className="w-full flex items-center justify-center gap-2 bg-[#1D67CD] text-black
+                               font-heading font-semibold rounded-[10px] py-3.5 text-sm
+                               hover:bg-[#1565B8] transition-all shadow-md hover:shadow-lg
+                               disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
-                      <span className="flex items-center gap-2">
-                        <svg
-                          className="animate-spin w-4 h-4"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                        >
-                          <circle
-                            cx="12"
-                            cy="12"
-                            r="10"
-                            stroke="currentColor"
-                            strokeWidth="3"
-                            className="opacity-25"
-                          />
-                          <path
-                            d="M4 12a8 8 0 018-8"
-                            stroke="currentColor"
-                            strokeWidth="3"
-                            strokeLinecap="round"
-                          />
+                      <>
+                        <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
+                          <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" className="opacity-25" />
+                          <path d="M4 12a8 8 0 018-8" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
                         </svg>
-                        Enviando Diagnóstico...
-                      </span>
+                        Enviando...
+                      </>
                     ) : (
                       <>
-                        <Zap className="w-5 h-5" />
-                        Solicitar Orçamento Técnico
+                        <Send className="w-4 h-4" />
+                        Enviar Diagnóstico
                       </>
                     )}
-                  </Button>
+                  </button>
 
-                  <p className="text-center text-xs text-text-muted/60 mt-6 pt-6 border-t border-white/5">
-                    Seus dados são protegidos e usados exclusivamente para elaboração
-                    da proposta técnica.
+                  <p className="text-center text-xs text-[#9CA3AF] font-body mt-2">
+                    Seus dados são protegidos e usados exclusivamente para elaboração da proposta técnica.
                   </p>
                 </form>
               </motion.div>
             ) : (
-              /* ── Card de Sucesso ──────────────────────────────────────── */
+              /* ── Card de Sucesso ────────────────────────────────────────── */
               <motion.div
                 key="success"
-                initial={{ opacity: 0, scale: 0.96, y: 12 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ duration: 0.45, ease: 'easeOut' }}
-                className="px-8 py-16 flex flex-col items-center text-center relative z-10"
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, ease: 'easeOut' }}
+                className="bg-[#F0FDF4] px-8 py-16 flex flex-col items-center text-center"
               >
-                <div className="absolute inset-0 bg-emerald-900/10 pointer-events-none" />
-                
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
-                  className="w-20 h-20 bg-emerald-900/30 border border-emerald-500/30 shadow-[0_0_30px_rgba(16,185,129,0.2)] rounded-2xl flex items-center justify-center
-                             mb-6 text-emerald-400"
+                  transition={{ delay: 0.15, type: 'spring', stiffness: 220 }}
+                  className="w-20 h-20 bg-[#DCFCE7] border-2 border-[#22C55E]/40 rounded-2xl flex items-center justify-center mb-6"
                 >
-                  <CheckCircle2 className="w-10 h-10 drop-shadow-[0_0_10px_rgba(16,185,129,0.4)]" />
+                  <CheckCircle2 className="w-10 h-10 text-[#16A34A]" />
                 </motion.div>
 
-                <h2 className="text-3xl font-display font-bold text-text-body mb-3">
+                <h2
+                  className="font-heading font-bold text-black mb-3"
+                  style={{ fontSize: '24px', fontFamily: 'var(--font-heading)' }}
+                >
                   Diagnóstico Recebido!
                 </h2>
 
-                <p className="text-text-muted max-w-md leading-relaxed mb-8">
+                <p
+                  className="text-[#4B5563] max-w-md leading-relaxed mb-8"
+                  style={{ fontSize: '15px', fontFamily: 'var(--font-body)' }}
+                >
                   Sua demanda foi registrada com sucesso. Nossa{' '}
-                  <strong className="text-text-body font-semibold">equipe de engenharia</strong> analisará as especificações
-                  técnicas e entrará em contato pelo WhatsApp ou e-mail em breve.
+                  <strong className="text-black font-semibold">equipe de engenharia</strong>{' '}
+                  analisará as especificações técnicas e entrará em contato pelo
+                  WhatsApp ou e-mail em até 24 horas úteis.
                 </p>
 
                 {productName && (
-                  <div className="flex items-center justify-center gap-2 bg-surface-elevated/50 border border-white/10 rounded-xl
-                                  px-5 py-3 mb-8 text-sm text-text-body shadow-inner max-w-sm w-full">
-                    <Package className="w-4 h-4 text-emerald-400 shrink-0" />
-                    <span className="truncate">
-                      Produto de interesse: <strong className="font-semibold">{productName}</strong>
+                  <div className="flex items-center gap-2 bg-white border border-[#E2E8F0] rounded-xl px-5 py-3 mb-8 text-sm max-w-sm w-full shadow-sm">
+                    <Package className="w-4 h-4 text-[#22C55E] shrink-0" />
+                    <span className="truncate text-[#4B5563]">
+                      Produto de interesse:{' '}
+                      <strong className="text-black font-semibold">{productName}</strong>
                     </span>
                   </div>
                 )}
 
-                <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mt-2">
+                <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
                   <Link
                     href="/"
-                    className="px-6 py-3 bg-surface-elevated border border-white/10 text-text-body rounded-xl
-                               text-sm font-semibold hover:bg-surface-elevated/80 transition-all text-center uppercase tracking-wide font-display w-full sm:w-auto"
+                    className="px-6 py-3 bg-white border border-[#E2E8F0] text-black rounded-[10px] text-sm font-semibold hover:border-[#1B84FE] transition-all text-center shadow-sm"
                   >
                     Ir para o Início
                   </Link>
                   <Link
                     href="/catalogo"
-                    className="px-6 py-3 bg-primary-base text-surface-lowest rounded-xl shadow-[0_0_15px_rgba(238,194,0,0.2)] hover:shadow-[0_0_25px_rgba(238,194,0,0.4)] hover:-translate-y-0.5
-                               text-sm font-semibold transition-all text-center uppercase tracking-wide font-display w-full sm:w-auto"
+                    className="px-6 py-3 bg-[#1B84FE] text-black rounded-[10px] text-sm font-semibold hover:bg-[#1D67CD] transition-all text-center shadow-sm"
                   >
                     Ver Catálogo
                   </Link>

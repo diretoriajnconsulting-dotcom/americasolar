@@ -1,38 +1,73 @@
 @import "tailwindcss";
 
 @theme {
-  --color-surface-dim: #090e1c;
-  --color-surface-low: #121826;
-  --color-surface-container: #1b2131;
-  --color-surface-high: #242b3d;
-  --color-surface-highest: #2d354a;
-  
-  --color-primary-base: #ffce00;
-  --color-primary-hover: #ffe047;
-  --color-on-primary: #3c2f00;
-  
-  --color-tertiary-base: #85d5ff;
-  
-  --color-text-body: #ffffff;
-  --color-text-muted: #c4cce0;
+  /* ── Paleta principal ──────────────────────────────────────── */
+  --color-primary:        #1B84FE;
+  --color-primary-dark:   #1D67CD;
+  --color-primary-light:  #EBF3FF;
 
-  --font-display: "Space Grotesk", sans-serif;
-  --font-body: "Manrope", sans-serif;
+  /* ── Superfícies (branco + cinzas leves) ───────────────────── */
+  --color-bg:             #FFFFFF;
+  --color-surface:        #F8FAFC;
+  --color-surface-alt:    #F1F5F9;
+  --color-border:         #E2E8F0;
+
+  /* ── Texto ─────────────────────────────────────────────────── */
+  --color-text:           #000000;
+  --color-text-secondary: #4B5563;
+  --color-text-muted:     #9CA3AF;
+
+  /* ── Tipografia ────────────────────────────────────────────── */
+  --font-heading: "Poppins", Arial, Helvetica, sans-serif;
+  --font-body:    "Montserrat", Arial, Helvetica, sans-serif;
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
   body {
-    background-color: var(--color-surface-dim);
-    color: var(--color-text-body);
+    background-color: var(--color-bg);
+    color: var(--color-text);
     font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
   }
 }
 
 @layer utilities {
-  .glass-panel {
-    @apply bg-surface-highest/40 backdrop-blur-xl border border-white/5 shadow-2xl;
+  /* Card limpo */
+  .card {
+    @apply bg-white rounded-2xl border border-[#E2E8F0] shadow-sm;
   }
-  .glass-card {
-    @apply bg-surface-container/60 backdrop-blur-md border border-white/5;
+  /* Botão base */
+  .btn-primary {
+    @apply bg-[#1B84FE] text-black font-semibold rounded-[10px] px-6 py-3
+           hover:bg-[#1D67CD] transition-colors duration-200 inline-flex items-center justify-center;
+  }
+  .btn-secondary {
+    @apply bg-[#1D67CD] text-black font-semibold rounded-[10px] px-6 py-3
+           hover:bg-[#1565B8] transition-colors duration-200 inline-flex items-center justify-center;
+  }
+  .btn-outline {
+    @apply bg-transparent border-2 border-[#1B84FE] text-[#1B84FE] font-semibold rounded-[10px] px-6 py-3
+           hover:bg-[#EBF3FF] transition-colors duration-200 inline-flex items-center justify-center;
+  }
+  /* Input padrão */
+  .input {
+    @apply w-full bg-white border border-[#E2E8F0] rounded-[12px] px-4 py-3 text-[#000000]
+           placeholder:text-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1B84FE]/40
+           focus:border-[#1B84FE] transition-all text-sm;
+  }
+  /* Seção com fundo alternado */
+  .section-alt {
+    @apply bg-[#F1F5F9];
+  }
+  /* Banda azul */
+  .band-blue {
+    @apply bg-[#1B84FE];
   }
 }

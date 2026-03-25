@@ -28,11 +28,11 @@ export default async function AdminDashboard() {
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-800">
       {/* Sidebar / Header Simplificado */}
-      <nav className="bg-solar-blue text-white shadow-md">
+      <nav className="bg-[#1B84FE] text-white shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
             <div className="flex items-center gap-2">
-              <Activity className="h-6 w-6 text-solar-yellow" />
+              <Activity className="h-6 w-6 text-[#FBBF24]" />
               <span className="font-bold text-lg tracking-tight">Solar Admin</span>
             </div>
             
@@ -59,8 +59,8 @@ export default async function AdminDashboard() {
         {/* Orçamentos Solicitados / Dash */}
         <section>
           <div className="flex items-center gap-2 mb-6">
-            <FileText className="w-6 h-6 text-solar-blue" />
-            <h2 className="text-2xl font-semibold text-solar-blue">Orçamentos & Pedidos</h2>
+            <FileText className="w-6 h-6 text-[#1B84FE]" />
+            <h2 className="text-2xl font-semibold text-[#1B84FE]">Orçamentos & Pedidos</h2>
           </div>
           
           <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
@@ -116,8 +116,8 @@ export default async function AdminDashboard() {
         <section>
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
             <div className="flex items-center gap-2">
-              <Package className="w-6 h-6 text-solar-blue" />
-              <h2 className="text-2xl font-semibold text-solar-blue">Catálogo de Produtos</h2>
+              <Package className="w-6 h-6 text-[#1B84FE]" />
+              <h2 className="text-2xl font-semibold text-[#1B84FE]">Catálogo de Produtos</h2>
             </div>
             
             {/* Componente que aciona a Extração I.A. Firecrawl */}
@@ -131,7 +131,7 @@ export default async function AdminDashboard() {
               products.map((p: any) => (
                 <div key={p.id} className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm flex flex-col justify-between">
                   <div>
-                    <h3 className="font-semibold text-lg text-solar-blue">{p.name}</h3>
+                    <h3 className="font-semibold text-lg text-[#1B84FE]">{p.name}</h3>
                     <p className="text-sm text-slate-500 mt-1 line-clamp-2">{p.description}</p>
                     <div className="mt-4 flex flex-wrap gap-2">
                       <span className="px-2 py-1 bg-slate-100 text-slate-600 rounded text-xs font-medium border border-slate-200">

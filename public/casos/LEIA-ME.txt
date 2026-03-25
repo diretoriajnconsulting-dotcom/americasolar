@@ -1,0 +1,24 @@
+📸 FOTOS DOS CASOS DE SUCESSO — Solar América
+================================================
+
+Cole aqui os arquivos de imagem com os nomes abaixo.
+Formatos aceitos: .jpg  .jpeg  .png  .webp
+Resolução recomendada: mínimo 1200×800 px
+
+DESTAQUES (cards grandes — vêm primeiro na página):
+  tanque-750kva-paraiba-mall.jpg     → Tanque 750KVA em produção p/ Paraíba Mall
+  manutencao-eolica-casa-nova.jpg    → Manutenção 19 trafo 36KV — Casa Nova Bahia
+
+PORTFÓLIO (grid 3 colunas):
+  parte-ativa-nucleo-750kva.jpg      → Parte ativa-núcleo 750KVA (foto com operador)
+  linha-producao.jpg                 → Linha de produção (vista geral da fábrica)
+  transformadores-seco-500kva.jpg    → Transformadores a seco 500KVA (vermelhos)
+  auto-transformadores.jpg           → Auto transformadores (várias potências)
+  transformador-300kva.jpg           → Transformador 300KVA (linha de cinzas)
+  transformadores-forca.jpg          → Transformadores a força (alta tensão, externo)
+  fotovoltaico-225kva.jpg            → Trafo fotovoltaico 225KVA (amarelos)
+  transformadores-pedestal.jpg       → Transformadores pedestal (armário verde)
+  transformadores-distribuicao.jpg   → Transformadores de distribuição (marrom)
+
+DICA: enquanto o arquivo não existir, a página exibe um placeholder animado
+no lugar — sem quebrar o layout. Basta copiar o arquivo e recarregar.

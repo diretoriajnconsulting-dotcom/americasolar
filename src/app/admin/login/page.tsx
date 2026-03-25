@@ -31,8 +31,8 @@ export default function LoginPage() {
     <div className="flex min-h-[80vh] flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8 bg-white p-10 rounded-2xl shadow-xl border border-slate-100">
         <div className="flex flex-col items-center text-center">
-          <Zap className="h-12 w-12 text-solar-yellow mb-4" />
-          <h2 className="text-3xl font-bold tracking-tight text-solar-blue">
+          <Zap className="h-12 w-12 text-[#1B84FE] mb-4" />
+          <h2 className="text-3xl font-bold tracking-tight text-black">
             Portal Administrativo
           </h2>
           <p className="mt-2 text-sm text-slate-600">
@@ -50,7 +50,7 @@ export default function LoginPage() {
                 placeholder="seu.email@empresa.com"
                 title="E-mail Corporativo"
                 required
-                className="w-full px-4 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-solar-yellow outline-none"
+                className="w-full px-4 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#1B84FE] outline-none"
               />
             </div>
             <div>
@@ -62,7 +62,7 @@ export default function LoginPage() {
                 placeholder="Sua senha"
                 title="Senha"
                 required
-                className="w-full px-4 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-solar-yellow outline-none"
+                className="w-full px-4 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#1B84FE] outline-none"
               />
             </div>
           </div>

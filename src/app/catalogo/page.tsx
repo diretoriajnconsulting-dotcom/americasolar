@@ -1,7 +1,6 @@
 import { createClient } from '@/utils/supabase/server'
 import CatalogoClient from './CatalogoClient'
 
-// Forçar renderização dinâmica para evitar cache com lista vazia (devido ao seed posterior)
 export const dynamic = 'force-dynamic'
 
 export default async function CatalogoPage() {
@@ -17,31 +16,35 @@ export default async function CatalogoPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      {/* ── Cabeçalho da Página ─────────────────────────────────────────── */}
-      <div className="text-center max-w-3xl mx-auto mb-14">
-        <span className="inline-block text-xs font-semibold tracking-widest text-solar-yellow uppercase mb-4">
-          Soluções Elétricas
-        </span>
-        <h1 className="text-4xl md:text-5xl font-bold text-solar-blue mb-5 leading-tight">
-          Nosso{' '}
-          <span className="relative">
-            <span className="text-solar-yellow">Catálogo</span>
-            <span
-              className="absolute -bottom-1 left-0 w-full h-0.5 bg-solar-yellow/40 rounded-full"
-              aria-hidden="true"
-            />
+    <div className="min-h-screen bg-white">
+      {/* ── Hero da Página ─────────────────────────────────────────────── */}
+      <div className="bg-[#0A1628] py-16 px-6">
+        <div className="container mx-auto max-w-7xl text-center">
+          <span className="inline-block text-[#1B84FE] font-heading font-semibold text-xs uppercase tracking-widest mb-4">
+            — Soluções Elétricas
           </span>
-        </h1>
-        <p className="text-lg text-slate-500 leading-relaxed">
-          Atendimento imediato para itens de prateleira e projetos customizados
-          sob demanda. Selecione qualquer produto para solicitar um orçamento
-          técnico detalhado.
-        </p>
+          <h1
+            className="font-heading font-bold text-white leading-tight mb-4"
+            style={{ fontSize: '33px', fontFamily: 'var(--font-heading)' }}
+          >
+            Nosso{' '}
+            <span className="text-[#1B84FE]">Catálogo</span>
+          </h1>
+          <p
+            className="text-white/60 max-w-2xl mx-auto leading-relaxed"
+            style={{ fontSize: '16px', fontFamily: 'var(--font-body)' }}
+          >
+            Atendimento imediato para itens de prateleira e projetos customizados
+            sob demanda. Selecione qualquer produto para solicitar um orçamento
+            técnico detalhado.
+          </p>
+        </div>
       </div>
 
-      {/* ── Client Component com filtros e paginação ───────────────────── */}
-      <CatalogoClient products={products ?? []} />
+      {/* ── Grid de Produtos ──────────────────────────────────────────────── */}
+      <div className="container mx-auto max-w-7xl px-6 py-16">
+        <CatalogoClient products={products ?? []} />
+      </div>
     </div>
   )
 }
