@@ -3,6 +3,7 @@ import { Poppins, Montserrat } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/ui/Header";
 import { Footer } from "@/components/ui/Footer";
+import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -17,9 +18,22 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Solar América - Transformadores Elétricos | João Pessoa – PB",
+  title: {
+    default: "Solar América | Transformadores Elétricos — João Pessoa, PB",
+    template: "%s | Solar América",
+  },
   description:
-    "Fabricante de transformadores a seco e a óleo. Atendemos indústrias, shoppings, usinas renováveis e obras críticas em todo o Brasil.",
+    "Fabricante de transformadores elétricos a seco e a óleo, certificada ISO 9001. Atendemos indústrias, shoppings, usinas renováveis e obras em todo o Brasil.",
+  keywords: [
+    "transformadores elétricos",
+    "transformador a seco",
+    "transformador a óleo",
+    "autotransformador",
+    "transformador fotovoltaico",
+    "João Pessoa",
+    "fabricante transformadores",
+    "Solar América",
+  ],
   openGraph: {
     title: "Solar América | Transformadores de Alta Performance",
     description:
@@ -29,6 +43,7 @@ export const metadata: Metadata = {
     locale: "pt_BR",
     type: "website",
   },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({
@@ -42,6 +57,7 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <WhatsAppButton />
       </body>
     </html>
   );

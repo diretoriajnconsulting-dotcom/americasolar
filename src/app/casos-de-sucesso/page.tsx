@@ -48,7 +48,7 @@ function ImagePlaceholder({ title }: { title: string }) {
   return (
     <div className="absolute inset-0 bg-[#F1F5F9] flex flex-col items-center justify-center gap-3 p-4">
       <div className="w-12 h-12 rounded-xl bg-[#EBF3FF] border border-[#1B84FE]/20 flex items-center justify-center">
-        <Zap className="w-5 h-5 text-[#1B84FE]" />
+        <Zap strokeWidth={1.25} className="w-5 h-5 text-[#1B84FE]" />
       </div>
       <p className="text-[11px] text-[#9CA3AF] text-center font-heading uppercase tracking-widest leading-relaxed max-w-[160px]">
         {title}
@@ -240,7 +240,7 @@ export default function CasosDeSucesso() {
               className="inline-flex items-center gap-2 bg-[#1B84FE] text-black font-semibold px-8 py-3.5 rounded-[10px] hover:bg-[#1D67CD] transition-all text-sm shadow-lg group"
             >
               Solicitar Diagnóstico de Carga
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              <ArrowRight strokeWidth={1.25} className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
             </Link>
           </div>
         </motion.div>

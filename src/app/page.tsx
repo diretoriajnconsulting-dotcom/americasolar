@@ -1,7 +1,11 @@
 'use client'
 
+import { useEffect, useRef, useState } from 'react'
+
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import useEmblaCarousel from 'embla-carousel-react'
+import Autoplay from 'embla-carousel-autoplay'
 import {
   ArrowRight,
   Shield, Zap, CheckCircle, Award,
@@ -64,28 +68,87 @@ const VALORES = [
   { icon: Leaf,        label: 'Saúde, Segurança e Meio Ambiente' },
 ]
 
+
+// ─── Contador animado ─────────────────────────────────────────────────────────
+function AnimatedCounter({ target, suffix = '', prefix = '' }: { target: number; suffix?: string; prefix?: string }) {
+  const [count, setCount] = useState(0)
+  const ref = useRef<HTMLSpanElement>(null)
+  const started = useRef(false)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !started.current) {
+          started.current = true
+          const duration = 1800
+          const steps = 60
+          const increment = target / steps
+          let current = 0
+          const timer = setInterval(() => {
+            current = Math.min(current + increment, target)
+            setCount(Math.round(current))
+            if (current >= target) clearInterval(timer)
+          }, duration / steps)
+        }
+      },
+      { threshold: 0.3 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [target])
+
+  return <span ref={ref}>{prefix}{count.toLocaleString('pt-BR')}{suffix}</span>
+}
+
+const STATS = [
+  { prefix: '+', value: 500,  suffix: '',   label: 'Transformadores Entregues',  sub: 'desde a fundação' },
+  { prefix: '+', value: 15,   suffix: '',   label: 'Anos de Mercado',             sub: 'de experiência sólida' },
+  { prefix: '+', value: 12,   suffix: '',   label: 'Estados Atendidos',           sub: 'em todo o Brasil' },
+  { prefix: '',  value: 98,   suffix: '%',  label: 'Índice de Satisfação',        sub: 'avaliado pelos clientes' },
+]
+
 export default function Home() {
+  const [emblaRef] = useEmblaCarousel({ loop: true, duration: 40 }, [Autoplay({ delay: 5000, stopOnInteraction: false })])
+
   return (
     <div className="overflow-x-hidden">
 
       {/* ══════════════════════════════════════════════════════════
-          1. HERO — fundo escuro, headline bold, CTA azul
+          1. HERO — carrossel dinâmico com overlay
       ══════════════════════════════════════════════════════════ */}
       <section
         className="relative bg-[#0A1628] text-white overflow-hidden"
         style={{ minHeight: '88vh', display: 'flex', alignItems: 'center' }}
       >
+        {/* Carrossel de fundo transparente */}
+        <div className="absolute inset-0 overflow-hidden z-0" ref={emblaRef}>
+          <div className="flex h-full">
+            {[1, 2, 3].map((index) => (
+              <div key={index} className="relative flex-[0_0_100%] min-w-0 h-full">
+                <img
+                  src={`/hero-carousel/${index}.png`}
+                  alt={`Background ${index}`}
+                  className="w-full h-full object-cover opacity-80"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        {/* Overlay Escuro para Legibilidade */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0A1628]/95 via-[#0A1628]/80 to-[#0A1628]/40 z-0"></div>
+
         {/* Padrão de grade sutil */}
         <div
-          className="absolute inset-0 opacity-[0.04]"
+          className="absolute inset-0 opacity-[0.04] z-0"
           style={{
             backgroundImage:
               'linear-gradient(rgba(27,132,254,.6) 1px, transparent 1px), linear-gradient(90deg, rgba(27,132,254,.6) 1px, transparent 1px)',
             backgroundSize: '64px 64px',
           }}
         />
-        {/* Brilho azul */}
-        <div className="absolute top-1/4 left-1/3 w-[600px] h-[600px] bg-[#1B84FE]/10 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="relative z-10 container mx-auto max-w-7xl px-6 py-24 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
@@ -93,15 +156,15 @@ export default function Home() {
           <motion.div variants={stagger} initial="hidden" animate="show">
             <motion.span
               variants={fadeUp}
-              className="inline-flex items-center gap-2 bg-[#1B84FE]/15 border border-[#1B84FE]/30 rounded-full px-4 py-1.5 text-xs font-semibold tracking-widest text-[#1B84FE] uppercase mb-6"
+              className="inline-flex items-center gap-2 bg-[#1B84FE]/15 border border-[#1B84FE]/30 rounded-full px-4 py-1.5 text-xs font-semibold tracking-widest text-[#1B84FE] uppercase mb-6 backdrop-blur-md"
             >
-              <Zap className="w-3 h-3" fill="currentColor" />
+              <Zap strokeWidth={1.25} className="w-3 h-3" fill="currentColor" />
               Os melhores do Brasil
             </motion.span>
 
             <motion.h1
               variants={fadeUp}
-              className="font-heading font-bold leading-tight mb-6"
+              className="font-heading font-bold leading-tight mb-6 drop-shadow-lg"
               style={{ fontSize: '33px', fontFamily: 'var(--font-heading)' }}
             >
               <span className="text-white">Transformadores</span>{' '}
@@ -115,7 +178,7 @@ export default function Home() {
 
             <motion.p
               variants={fadeUp}
-              className="text-white/70 leading-relaxed mb-10 max-w-lg"
+              className="text-white/80 leading-relaxed mb-10 max-w-lg drop-shadow-md"
               style={{ fontSize: '17px', fontFamily: 'var(--font-body)' }}
             >
               Agilize todo o processo industrial tornando a alimentação elétrica
@@ -129,11 +192,11 @@ export default function Home() {
                 className="inline-flex items-center justify-center gap-2 bg-[#1B84FE] text-black font-semibold rounded-[10px] px-8 py-3.5 hover:bg-[#1D67CD] transition-colors shadow-lg text-sm"
               >
                 Quero um Orçamento
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight strokeWidth={1.25} className="w-4 h-4" />
               </Link>
               <Link
                 href="/catalogo"
-                className="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-white/30 text-white font-semibold rounded-[10px] px-8 py-3.5 hover:border-[#1B84FE] hover:text-[#1B84FE] transition-all text-sm"
+                className="inline-flex items-center justify-center gap-2 bg-black/40 backdrop-blur-md border-2 border-white/30 text-white font-semibold rounded-[10px] px-8 py-3.5 hover:border-[#1B84FE] hover:text-[#1B84FE] transition-all text-sm"
               >
                 Ver Catálogo
               </Link>
@@ -155,11 +218,11 @@ export default function Home() {
             ].map((item) => (
               <div
                 key={item.kva}
-                className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/8 hover:border-[#1B84FE]/40 transition-all group"
+                className="bg-black/30 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:bg-black/50 hover:border-[#1B84FE]/40 transition-all group shadow-xl"
               >
-                <Zap className="w-5 h-5 mb-3 transition-all" style={{ color: item.cor }} fill="currentColor" />
+                <Zap strokeWidth={1.25} className="w-5 h-5 mb-3 transition-all" style={{ color: item.cor }} fill="currentColor" />
                 <p className="text-xl font-heading font-bold text-white">{item.kva}</p>
-                <p className="text-xs text-white/50 mt-1 font-body uppercase tracking-wider">{item.tipo}</p>
+                <p className="text-xs text-white/60 mt-1 font-body uppercase tracking-wider">{item.tipo}</p>
               </div>
             ))}
           </motion.div>
@@ -170,13 +233,13 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.4 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
         >
-          <span className="text-[10px] text-white/30 tracking-widest uppercase font-body">scroll</span>
+          <span className="text-[10px] text-white/50 tracking-widest uppercase font-body drop-shadow-md">scroll</span>
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ repeat: Infinity, duration: 1.8, ease: 'easeInOut' }}
-            className="w-px h-8 bg-gradient-to-b from-[#1B84FE]/50 to-transparent rounded-full"
+            className="w-px h-8 bg-gradient-to-b from-[#1B84FE]/80 to-transparent rounded-full"
           />
         </motion.div>
       </section>
@@ -196,7 +259,7 @@ export default function Home() {
             {FEATURES.map(({ icon: Icon, title, desc }) => (
               <motion.div key={title} variants={fadeUp} className="flex flex-col gap-4">
                 <div className="w-12 h-12 bg-[#EBF3FF] rounded-xl flex items-center justify-center shrink-0">
-                  <Icon className="w-6 h-6 text-[#1B84FE]" />
+                  <Icon strokeWidth={1.25} className="w-6 h-6 text-[#1B84FE]" />
                 </div>
                 <h3
                   className="font-heading font-bold text-black leading-snug"
@@ -213,6 +276,28 @@ export default function Home() {
               </motion.div>
             ))}
           </motion.div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════
+          2b. SOCIAL PROOF — banda de números animados
+      ══════════════════════════════════════════════════════════ */}
+      <section className="bg-[#F8FAFC] border-y border-[#E2E8F0] py-14 px-6">
+        <div className="container mx-auto max-w-7xl">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+            {STATS.map(({ prefix, value, suffix, label, sub }) => (
+              <div key={label} className="text-center">
+                <p
+                  className="font-heading font-extrabold text-[#1B84FE] leading-none mb-1"
+                  style={{ fontSize: '40px' }}
+                >
+                  <AnimatedCounter target={value} suffix={suffix} prefix={prefix} />
+                </p>
+                <p className="font-heading font-bold text-black text-sm mb-0.5">{label}</p>
+                <p className="text-[#9CA3AF] text-xs font-body">{sub}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -248,7 +333,7 @@ export default function Home() {
                 className="inline-flex items-center gap-2 bg-black text-white font-semibold rounded-[10px] px-7 py-3.5 hover:bg-[#0A1628] transition-colors text-sm"
               >
                 Ver Catálogo Completo
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight strokeWidth={1.25} className="w-4 h-4" />
               </Link>
             </motion.div>
 
@@ -266,7 +351,7 @@ export default function Home() {
                   className="flex items-center justify-between bg-white/15 border border-white/20 rounded-xl px-5 py-4 hover:bg-white/25 transition-colors"
                 >
                   <div className="flex items-center gap-3">
-                    <Zap className="w-4 h-4 text-black/80" fill="currentColor" />
+                    <Zap strokeWidth={1.25} className="w-4 h-4 text-black/80" fill="currentColor" />
                     <span className="font-heading font-semibold text-black text-sm">{label}</span>
                   </div>
                   <span className="text-black/60 text-xs font-body">{kva}</span>
@@ -355,7 +440,7 @@ export default function Home() {
                   className="inline-flex items-center gap-2 bg-[#1B84FE] text-black font-semibold rounded-[10px] px-7 py-3.5 hover:bg-[#1D67CD] transition-colors text-sm shadow-sm"
                 >
                   Ver Casos de Sucesso
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight strokeWidth={1.25} className="w-4 h-4" />
                 </Link>
               </motion.div>
             </motion.div>
@@ -417,7 +502,7 @@ export default function Home() {
                   className="w-12 h-12 rounded-xl flex items-center justify-center mb-6"
                   style={{ backgroundColor: color + '15' }}
                 >
-                  <Icon className="w-6 h-6" style={{ color }} />
+                  <Icon strokeWidth={1.25} className="w-6 h-6" style={{ color }} />
                 </div>
                 <h3
                   className="font-heading font-bold text-black mb-4"
@@ -482,7 +567,7 @@ export default function Home() {
                 className="flex items-center gap-4 bg-white border border-[#E2E8F0] rounded-xl px-5 py-4 shadow-sm hover:border-[#1B84FE]/40 hover:shadow-md transition-all group"
               >
                 <div className="w-10 h-10 bg-[#EBF3FF] rounded-lg flex items-center justify-center shrink-0 group-hover:bg-[#1B84FE] transition-colors">
-                  <Icon className="w-5 h-5 text-[#1B84FE] group-hover:text-white transition-colors" />
+                  <Icon strokeWidth={1.25} className="w-5 h-5 text-[#1B84FE] group-hover:text-white transition-colors" />
                 </div>
                 <span
                   className="font-heading font-semibold text-black leading-snug"
@@ -593,7 +678,7 @@ export default function Home() {
                   className="inline-flex items-center gap-2 bg-[#1B84FE] text-black font-semibold rounded-[10px] px-7 py-3.5 hover:bg-[#1D67CD] transition-colors text-sm shadow-sm"
                 >
                   Quero um Orçamento
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight strokeWidth={1.25} className="w-4 h-4" />
                 </Link>
               </motion.div>
             </motion.div>
@@ -613,7 +698,7 @@ export default function Home() {
             transition={{ duration: 0.5 }}
           >
             <div className="inline-flex items-center justify-center w-14 h-14 bg-[#1B84FE]/15 border border-[#1B84FE]/30 rounded-2xl mb-6">
-              <BookOpen className="w-7 h-7 text-[#1B84FE]" />
+              <BookOpen strokeWidth={1.25} className="w-7 h-7 text-[#1B84FE]" />
             </div>
             <h2
               className="font-heading font-bold text-white mb-4"
@@ -635,7 +720,7 @@ export default function Home() {
                 className="inline-flex items-center justify-center gap-2 bg-[#1B84FE] text-black font-semibold rounded-[10px] px-10 py-4 hover:bg-[#1D67CD] transition-colors shadow-lg text-sm"
               >
                 Iniciar Diagnóstico de Carga
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight strokeWidth={1.25} className="w-4 h-4" />
               </Link>
               <Link
                 href="/catalogo"

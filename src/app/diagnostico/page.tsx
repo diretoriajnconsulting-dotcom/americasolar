@@ -1,5 +1,13 @@
+import type { Metadata } from 'next'
 import { createClient } from '@/utils/supabase/server'
 import DiagnosticoForm from './DiagnosticoForm'
+
+export const metadata: Metadata = {
+  title: 'Solicitar Orçamento',
+  description:
+    'Preencha o formulário de diagnóstico de carga elétrica e receba uma proposta técnica personalizada da Solar América em até 24h.',
+}
+
 
 // Next.js 15+ recebe searchParams como Promise em Server Components
 interface DiagnosticoPageProps {

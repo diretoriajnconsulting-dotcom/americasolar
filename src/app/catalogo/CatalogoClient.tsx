@@ -85,7 +85,7 @@ export default function CatalogoClient({ products }: CatalogoClientProps) {
 
         {/* Busca */}
         <div className="relative flex-1 w-full">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9CA3AF]" />
+          <Search strokeWidth={1.25} className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9CA3AF]" />
           <input
             type="text"
             placeholder="Buscar por nome, descrição ou SKU..."
@@ -184,7 +184,7 @@ export default function CatalogoClient({ products }: CatalogoClientProps) {
             aria-label="Página Anterior"
             className="p-2 rounded-lg bg-white border border-[#E2E8F0] text-[#4B5563] hover:border-[#1B84FE] hover:text-[#1B84FE] disabled:opacity-40 disabled:cursor-not-allowed transition-all"
           >
-            <ChevronLeft className="w-4 h-4" />
+            <ChevronLeft strokeWidth={1.25} className="w-4 h-4" />
           </button>
 
           {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
@@ -207,7 +207,7 @@ export default function CatalogoClient({ products }: CatalogoClientProps) {
             aria-label="Próxima Página"
             className="p-2 rounded-lg bg-white border border-[#E2E8F0] text-[#4B5563] hover:border-[#1B84FE] hover:text-[#1B84FE] disabled:opacity-40 disabled:cursor-not-allowed transition-all"
           >
-            <ChevronRight className="w-4 h-4" />
+            <ChevronRight strokeWidth={1.25} className="w-4 h-4" />
           </button>
         </motion.div>
       )}
@@ -233,7 +233,7 @@ export default function CatalogoClient({ products }: CatalogoClientProps) {
             className="inline-flex items-center gap-2 bg-[#1B84FE] text-black font-semibold px-8 py-3.5 rounded-[10px] hover:bg-[#1D67CD] transition-all text-sm shadow-lg"
           >
             Solicitar Projeto Customizado
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight strokeWidth={1.25} className="w-4 h-4" />
           </button>
         </div>
       </motion.div>

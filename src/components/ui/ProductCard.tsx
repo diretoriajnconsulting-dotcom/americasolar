@@ -104,7 +104,7 @@ export function ProductCard({ product, onAction }: ProductCardProps) {
               </>
             ) : (
               <>
-                <FileText className="w-4 h-4" />
+                <FileText strokeWidth={1.25} className="w-4 h-4" />
                 Solicitar Orçamento
               </>
             )}

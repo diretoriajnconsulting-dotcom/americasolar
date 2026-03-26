@@ -1,5 +1,13 @@
+import type { Metadata } from 'next'
 import { createClient } from '@/utils/supabase/server'
 import CatalogoClient from './CatalogoClient'
+
+export const metadata: Metadata = {
+  title: 'Catálogo de Transformadores',
+  description:
+    'Explore o catálogo completo da Solar América: transformadores a seco, a óleo, autotransformadores e fotovoltaicos. Solicite orçamento técnico direto com a fábrica.',
+}
+
 
 export const dynamic = 'force-dynamic'
 

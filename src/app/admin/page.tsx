@@ -59,7 +59,7 @@ export default async function AdminDashboard() {
         {/* Orçamentos Solicitados / Dash */}
         <section>
           <div className="flex items-center gap-2 mb-6">
-            <FileText className="w-6 h-6 text-[#1B84FE]" />
+            <FileText strokeWidth={1.25} className="w-6 h-6 text-[#1B84FE]" />
             <h2 className="text-2xl font-semibold text-[#1B84FE]">Orçamentos & Pedidos</h2>
           </div>
           

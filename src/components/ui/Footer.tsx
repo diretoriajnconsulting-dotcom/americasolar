@@ -10,7 +10,7 @@ export function Footer() {
         {/* Marca */}
         <div>
           <Link href="/" className="flex items-center gap-2 mb-5 group">
-            <Zap className="h-6 w-6 text-[#1B84FE] group-hover:text-white transition-colors" fill="currentColor" />
+            <Zap strokeWidth={1.25} className="h-6 w-6 text-[#1B84FE] group-hover:text-white transition-colors" fill="currentColor" />
             <span
               className="text-xl font-heading font-bold text-white tracking-tight group-hover:text-[#1B84FE] transition-colors"
               style={{ fontFamily: 'var(--font-heading)' }}
@@ -74,7 +74,7 @@ export function Footer() {
                     href={`tel:${tel}`}
                     className="flex items-center gap-1.5 text-sm font-semibold text-white hover:text-[#1B84FE] transition-colors"
                   >
-                    <Phone className="w-3 h-3" />
+                    <Phone strokeWidth={1.25} className="w-3 h-3" />
                     {phone}
                   </a>
                   <span className="text-white/20 text-xs">·</span>
@@ -82,7 +82,7 @@ export function Footer() {
                     href={`mailto:${email}`}
                     className="flex items-center gap-1.5 text-xs text-white/50 hover:text-[#1B84FE] transition-colors"
                   >
-                    <Mail className="w-3 h-3" />
+                    <Mail strokeWidth={1.25} className="w-3 h-3" />
                     {email}
                   </a>
                 </div>
@@ -100,7 +100,7 @@ export function Footer() {
             Localização
           </h3>
           <div className="flex items-start gap-3 text-white/60 text-sm font-body leading-relaxed mb-6">
-            <MapPin className="w-4 h-4 text-[#1B84FE] shrink-0 mt-0.5" />
+            <MapPin strokeWidth={1.25} className="w-4 h-4 text-[#1B84FE] shrink-0 mt-0.5" />
             <div>
               <p>R. Maria Presotto Pucci, 1050</p>
               <p>Galpão 03 / Galpão 04 — Distrito Industrial</p>

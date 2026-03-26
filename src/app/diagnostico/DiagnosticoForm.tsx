@@ -57,7 +57,7 @@ function InputField({
         )}
       </label>
       <div className="relative">
-        <Icon className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9CA3AF] pointer-events-none" />
+        <Icon strokeWidth={1.25} className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9CA3AF] pointer-events-none" />
         <input
           id={id}
           className={`${inputClass} pl-10`}
@@ -87,7 +87,7 @@ function SelectField({
     <div>
       <label htmlFor={id} className={labelClass}>{label}</label>
       <div className="relative">
-        <Icon className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9CA3AF] pointer-events-none z-10" />
+        <Icon strokeWidth={1.25} className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9CA3AF] pointer-events-none z-10" />
         <select
           id={id}
           name={id}
@@ -153,7 +153,7 @@ export default function DiagnosticoForm({ productId, productName }: DiagnosticoF
                 <div className="bg-[#0A1628] px-8 py-7">
                   <div className="flex items-center gap-4 mb-2">
                     <div className="w-10 h-10 bg-[#1B84FE]/20 border border-[#1B84FE]/30 rounded-xl flex items-center justify-center">
-                      <Zap className="w-5 h-5 text-[#1B84FE]" />
+                      <Zap strokeWidth={1.25} className="w-5 h-5 text-[#1B84FE]" />
                     </div>
                     <h1
                       className="font-heading font-bold text-white"
