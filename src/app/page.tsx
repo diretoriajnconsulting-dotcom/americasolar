@@ -9,9 +9,9 @@ import Autoplay from 'embla-carousel-autoplay'
 import {
   ArrowRight,
   Shield, Zap, CheckCircle, Award,
-  Flame, Target, Rocket,
-  Smile, Users, TrendingUp, Leaf,
-  Eye, BookOpen,
+  BatteryCharging, Crosshair, BarChart2,
+  Star, Users, TrendingUp, Leaf,
+  Eye, ClipboardList,
 } from 'lucide-react'
 
 // ─── Animações ────────────────────────────────────────────────────────────────
@@ -57,15 +57,15 @@ const TIPOS = [
 ]
 
 const VALORES = [
-  { icon: Flame,       label: 'Motivação' },
-  { icon: Target,      label: 'Comprometimento' },
-  { icon: Rocket,      label: 'Empreendedorismo' },
-  { icon: Shield,      label: 'Integridade' },
-  { icon: Smile,       label: 'Bom Humor' },
-  { icon: Users,       label: 'Valorização Humana' },
-  { icon: Award,       label: 'Credibilidade' },
-  { icon: TrendingUp,  label: 'Busca Contínua de Excelência' },
-  { icon: Leaf,        label: 'Saúde, Segurança e Meio Ambiente' },
+  { icon: BatteryCharging, label: 'Motivação' },
+  { icon: Crosshair,       label: 'Comprometimento' },
+  { icon: BarChart2,       label: 'Empreendedorismo' },
+  { icon: Shield,          label: 'Integridade' },
+  { icon: Star,            label: 'Bom Humor' },
+  { icon: Users,           label: 'Valorização Humana' },
+  { icon: Award,           label: 'Credibilidade' },
+  { icon: TrendingUp,      label: 'Busca Contínua de Excelência' },
+  { icon: Leaf,            label: 'Saúde, Segurança e Meio Ambiente' },
 ]
 
 
@@ -472,7 +472,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
-                icon: Rocket,
+                icon: Zap,
                 title: 'Missão',
                 color: '#1B84FE',
                 paragraphs: [
@@ -698,7 +698,7 @@ export default function Home() {
             transition={{ duration: 0.5 }}
           >
             <div className="inline-flex items-center justify-center w-14 h-14 bg-[#1B84FE]/15 border border-[#1B84FE]/30 rounded-2xl mb-6">
-              <BookOpen strokeWidth={1.25} className="w-7 h-7 text-[#1B84FE]" />
+              <ClipboardList strokeWidth={1.25} className="w-7 h-7 text-[#1B84FE]" />
             </div>
             <h2
               className="font-heading font-bold text-white mb-4"

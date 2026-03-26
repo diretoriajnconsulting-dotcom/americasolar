@@ -3,7 +3,8 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { usePathname } from 'next/navigation'
-import { Menu, X, Zap } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
+import { SolarAmericaLogo } from './SolarAmericaLogo'
 
 const navLinks = [
   { href: '/catalogo',          label: 'Catálogo' },
@@ -22,17 +23,11 @@ export function Header() {
       <div className="container mx-auto flex h-[72px] items-center justify-between px-6 max-w-7xl">
 
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group" onClick={() => setOpen(false)}>
-          <Zap strokeWidth={1.25}
-            className="h-6 w-6 text-[#1B84FE] group-hover:text-[#1D67CD] transition-colors"
-            fill="currentColor"
+        <Link href="/" className="flex items-center group" onClick={() => setOpen(false)}>
+          <SolarAmericaLogo
+            variant="dark"
+            className="h-[44px] w-auto transition-opacity group-hover:opacity-80"
           />
-          <span
-            className="text-xl font-heading font-bold tracking-tight text-black group-hover:text-[#1B84FE] transition-colors"
-            style={{ fontFamily: 'var(--font-heading)' }}
-          >
-            Solar América
-          </span>
         </Link>
 
         {/* Nav desktop */}

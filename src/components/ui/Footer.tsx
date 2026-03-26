@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { Zap, MapPin, Phone, Mail } from 'lucide-react'
+import { MapPin, Phone, Mail } from 'lucide-react'
+import { SolarAmericaLogo } from './SolarAmericaLogo'
 
 export function Footer() {
   return (
@@ -9,14 +10,11 @@ export function Footer() {
 
         {/* Marca */}
         <div>
-          <Link href="/" className="flex items-center gap-2 mb-5 group">
-            <Zap strokeWidth={1.25} className="h-6 w-6 text-[#1B84FE] group-hover:text-white transition-colors" fill="currentColor" />
-            <span
-              className="text-xl font-heading font-bold text-white tracking-tight group-hover:text-[#1B84FE] transition-colors"
-              style={{ fontFamily: 'var(--font-heading)' }}
-            >
-              Solar América
-            </span>
+          <Link href="/" className="flex items-center mb-5 group">
+            <SolarAmericaLogo
+              variant="light"
+              className="h-[42px] w-auto transition-opacity group-hover:opacity-75"
+            />
           </Link>
           <p
             className="text-white/50 text-xs uppercase tracking-widest font-heading mb-2"
