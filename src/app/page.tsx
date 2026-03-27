@@ -222,17 +222,27 @@ export default function Home() {
       ══════════════════════════════════════════════════════════ */}
       <section
         className="relative bg-[#0A1628] text-white overflow-hidden"
-        style={{ minHeight: '90vh', display: 'flex', alignItems: 'center' }}
+        style={{ minHeight: 'clamp(560px, 85vh, 900px)', display: 'flex', alignItems: 'center' }}
       >
         {/* Carrossel */}
         <div className="absolute inset-0 overflow-hidden z-0" ref={emblaRef}>
           <div className="flex h-full">
-            {[1, 2, 3].map((i) => (
+            {/* Cada slide usa object-position calibrada para as fotos 640×640:
+                foto 1 (fábrica + transformador) → top center mostra melhor
+                foto 2 (fazenda solar aérea) → center é ideal
+                foto 3 (subestação ao entardecer) → center */}
+            {[
+              { i: 1, pos: 'center top' },
+              { i: 2, pos: 'center center' },
+              { i: 3, pos: 'center center' },
+            ].map(({ i, pos }) => (
               <div key={i} className="relative flex-[0_0_100%] min-w-0 h-full">
                 <img
                   src={`/hero-carousel/${i}.png`}
                   alt=""
+                  loading={i === 1 ? 'eager' : 'lazy'}
                   className="w-full h-full object-cover"
+                  style={{ objectPosition: pos }}
                 />
               </div>
             ))}
@@ -381,7 +391,7 @@ export default function Home() {
       <section className="bg-[#1B84FE] py-20 px-6 relative overflow-hidden">
         {/* Foto de fundo com baixa opacidade */}
         <div className="absolute inset-0">
-          <img src="/hero-carousel/1.png" alt="" className="w-full h-full object-cover opacity-10" />
+          <img src="/hero-carousel/1.png" alt="" className="w-full h-full object-cover opacity-10" style={{ objectPosition: 'center top' }} />
         </div>
         <div className="container mx-auto max-w-7xl relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -443,6 +453,7 @@ export default function Home() {
                   src="/hero-carousel/1.png"
                   alt="Fábrica Solar América — transformadores industriais"
                   className="w-full h-80 object-cover"
+                  style={{ objectPosition: 'center top' }}
                 />
               </div>
               {/* Badge flutuante */}
@@ -690,7 +701,7 @@ export default function Home() {
       ══════════════════════════════════════════════════════════ */}
       <section className="relative bg-[#0A1628] py-24 px-6 overflow-hidden">
         <div className="absolute inset-0">
-          <img src="/hero-carousel/3.png" alt="" className="w-full h-full object-cover opacity-15" />
+          <img src="/hero-carousel/3.png" alt="" className="w-full h-full object-cover opacity-15" style={{ objectPosition: 'center center' }} />
           <div className="absolute inset-0 bg-[#0A1628]/90" />
         </div>
         <div className="container mx-auto max-w-4xl text-center relative z-10">
