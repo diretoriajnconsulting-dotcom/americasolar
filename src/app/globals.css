@@ -6,6 +6,11 @@
   --color-primary-dark:   #1D67CD;
   --color-primary-light:  #EBF3FF;
 
+  /* ── Dourado (logo oficial Solar América) ───────────────────── */
+  --color-gold:           #F0A500;
+  --color-gold-dark:      #C8880A;
+  --color-gold-light:     #FEF3DC;
+
   /* ── Superfícies (branco + cinzas leves) ───────────────────── */
   --color-bg:             #FFFFFF;
   --color-surface:        #F8FAFC;

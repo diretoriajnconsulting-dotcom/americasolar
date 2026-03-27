@@ -25,10 +25,10 @@ export function Footer() {
             CNPJ: 49.221.284/0001-35
           </p>
           <div className="mt-6 flex gap-2">
-            <span className="inline-flex items-center gap-1.5 bg-[#1B84FE]/10 border border-[#1B84FE]/20 rounded-lg px-3 py-1.5 text-[10px] font-heading font-bold text-[#1B84FE] uppercase tracking-wider">
+            <span className="inline-flex items-center gap-1.5 bg-[#F0A500]/10 border border-[#F0A500]/25 rounded-lg px-3 py-1.5 text-[10px] font-heading font-bold text-[#F0A500] uppercase tracking-wider">
               ISO 9001
             </span>
-            <span className="inline-flex items-center gap-1.5 bg-[#1B84FE]/10 border border-[#1B84FE]/20 rounded-lg px-3 py-1.5 text-[10px] font-heading font-bold text-[#1B84FE] uppercase tracking-wider">
+            <span className="inline-flex items-center gap-1.5 bg-[#F0A500]/10 border border-[#F0A500]/25 rounded-lg px-3 py-1.5 text-[10px] font-heading font-bold text-[#F0A500] uppercase tracking-wider">
               ABNT NBR
             </span>
           </div>
@@ -64,7 +64,7 @@ export function Footer() {
               },
             ].map(({ dept, phone, tel, email }) => (
               <li key={dept}>
-                <span className="text-[#1B84FE] text-[10px] font-heading font-semibold uppercase tracking-widest block mb-1">
+                <span className="text-[#F0A500] text-[10px] font-heading font-semibold uppercase tracking-widest block mb-1">
                   {dept}
                 </span>
                 <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
@@ -98,7 +98,7 @@ export function Footer() {
             Localização
           </h3>
           <div className="flex items-start gap-3 text-white/60 text-sm font-body leading-relaxed mb-6">
-            <MapPin strokeWidth={1.25} className="w-4 h-4 text-[#1B84FE] shrink-0 mt-0.5" />
+            <MapPin strokeWidth={1.25} className="w-4 h-4 text-[#F0A500] shrink-0 mt-0.5" />
             <div>
               <p>R. Maria Presotto Pucci, 1050</p>
               <p>Galpão 03 / Galpão 04 — Distrito Industrial</p>

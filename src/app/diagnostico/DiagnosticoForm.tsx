@@ -152,8 +152,8 @@ export default function DiagnosticoForm({ productId, productName }: DiagnosticoF
                 {/* Cabeçalho do formulário */}
                 <div className="bg-[#0A1628] px-8 py-7">
                   <div className="flex items-center gap-4 mb-2">
-                    <div className="w-10 h-10 bg-[#1B84FE]/20 border border-[#1B84FE]/30 rounded-xl flex items-center justify-center">
-                      <Zap strokeWidth={1.25} className="w-5 h-5 text-[#1B84FE]" />
+                    <div className="w-10 h-10 bg-[#F0A500]/15 border border-[#F0A500]/35 rounded-xl flex items-center justify-center">
+                      <Zap strokeWidth={1.25} className="w-5 h-5 text-[#F0A500]" />
                     </div>
                     <h1
                       className="font-heading font-bold text-white"

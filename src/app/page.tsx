@@ -257,9 +257,9 @@ export default function Home() {
         <div className="relative z-10 container mx-auto max-w-7xl px-6 py-28 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <motion.div variants={stagger} initial="hidden" animate="show">
             <motion.span variants={fadeUp}
-              className="inline-flex items-center gap-2 bg-[#1B84FE]/15 border border-[#1B84FE]/30 rounded-full px-4 py-1.5 text-xs font-semibold tracking-widest text-[#1B84FE] uppercase mb-7 backdrop-blur-md"
+              className="inline-flex items-center gap-2 bg-[#F0A500]/12 border border-[#F0A500]/40 rounded-full px-4 py-1.5 text-xs font-semibold tracking-widest text-[#F0A500] uppercase mb-7 backdrop-blur-md"
             >
-              <IconTransformerMini className="w-3.5 h-3.5 text-[#1B84FE]" />
+              <IconTransformerMini className="w-3.5 h-3.5 text-[#F0A500]" />
               Fabricação Própria · João Pessoa – PB
             </motion.span>
 
@@ -328,7 +328,7 @@ export default function Home() {
         >
           <span className="text-[9px] text-white/40 tracking-[0.3em] uppercase font-body">scroll</span>
           <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
-            className="w-px h-8 bg-gradient-to-b from-[#1B84FE]/60 to-transparent rounded-full" />
+            className="w-px h-8 bg-gradient-to-b from-[#F0A500]/60 to-transparent rounded-full" />
         </motion.div>
       </section>
 
@@ -346,7 +346,7 @@ export default function Home() {
                 className="flex flex-col gap-5 px-8 py-8 group hover:bg-[#FAFBFF] transition-colors first:pl-0 last:pr-0"
               >
                 {/* Barra de acento topo — pattern premium B2B */}
-                <div className="w-10 h-[3px] bg-[#1B84FE] rounded-full mb-1 transition-all duration-300 group-hover:w-16" />
+                <div className="w-10 h-[3px] bg-[#F0A500] rounded-full mb-1 transition-all duration-300 group-hover:w-16" />
                 <div className="w-14 h-14 bg-[#EBF3FF] rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-[#1B84FE] transition-colors">
                   <Icon className="w-8 h-8 text-[#1B84FE] group-hover:text-white transition-colors" />
                 </div>
@@ -374,7 +374,7 @@ export default function Home() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {STATS.map(({ prefix, value, suffix, label, sub }) => (
               <div key={label} className="text-center">
-                <p className="font-heading font-extrabold text-[#1B84FE] leading-none mb-1.5" style={{ fontSize: '42px' }}>
+                <p className="font-heading font-extrabold text-[#F0A500] leading-none mb-1.5" style={{ fontSize: '42px' }}>
                   <AnimatedCounter target={value} suffix={suffix} prefix={prefix} />
                 </p>
                 <p className="font-heading font-bold text-white text-sm mb-0.5">{label}</p>
@@ -474,7 +474,7 @@ export default function Home() {
               viewport={{ once: true, margin: '-60px' }}
             >
               <motion.p variants={fadeUp}
-                className="text-[#1B84FE] font-heading font-semibold text-xs uppercase tracking-widest mb-3"
+                className="text-[#F0A500] font-heading font-semibold text-xs uppercase tracking-widest mb-3"
               >
                 — Quem Somos
               </motion.p>
@@ -507,7 +507,7 @@ export default function Home() {
                   { n: 'ISO', l: '9001:2015' },
                 ].map(({ n, l }) => (
                   <div key={l} className="text-center bg-white border border-[#E2E8F0] rounded-xl py-3 shadow-sm">
-                    <p className="font-heading font-extrabold text-[#1B84FE] text-xl">{n}</p>
+                    <p className="font-heading font-extrabold text-[#F0A500] text-xl">{n}</p>
                     <p className="text-[#6B7280] text-xs font-body mt-0.5">{l}</p>
                   </div>
                 ))}
@@ -536,7 +536,7 @@ export default function Home() {
             viewport={{ once: true }} transition={{ duration: 0.45 }}
             className="text-center mb-16"
           >
-            <p className="text-[#1B84FE] font-heading font-semibold text-xs uppercase tracking-widest mb-3">— Propósito</p>
+            <p className="text-[#F0A500] font-heading font-semibold text-xs uppercase tracking-widest mb-3">— Propósito</p>
             <h2 className="font-heading font-bold text-black" style={{ fontSize: '33px' }}>O que nos move</h2>
           </motion.div>
 
@@ -598,7 +598,7 @@ export default function Home() {
             viewport={{ once: true }} transition={{ duration: 0.45 }}
             className="text-center mb-16"
           >
-            <p className="text-[#1B84FE] font-heading font-semibold text-xs uppercase tracking-widest mb-3">— Cultura</p>
+            <p className="text-[#F0A500] font-heading font-semibold text-xs uppercase tracking-widest mb-3">— Cultura</p>
             <h2 className="font-heading font-bold text-black mb-4" style={{ fontSize: '33px' }}>Nossos Valores</h2>
             <p className="text-[#4B5563] max-w-xl mx-auto font-body" style={{ fontSize: '15.5px' }}>
               Os princípios que guiam cada projeto, cada entrega e cada relação com nossos clientes e parceiros.
@@ -661,7 +661,7 @@ export default function Home() {
               viewport={{ once: true, margin: '-60px' }}
             >
               <motion.p variants={fadeUp}
-                className="text-[#1B84FE] font-heading font-semibold text-xs uppercase tracking-widest mb-3"
+                className="text-[#F0A500] font-heading font-semibold text-xs uppercase tracking-widest mb-3"
               >— Qualidade Certificada</motion.p>
               <motion.h2 variants={fadeUp}
                 className="font-heading font-bold text-black leading-tight mb-6" style={{ fontSize: '33px' }}
@@ -709,11 +709,11 @@ export default function Home() {
             initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }} transition={{ duration: 0.5 }}
           >
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-[#1B84FE]/15 border border-[#1B84FE]/30 rounded-2xl mb-8">
-              <IconTransformerCoil className="w-8 h-8 text-[#1B84FE]" />
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-[#F0A500]/12 border border-[#F0A500]/35 rounded-2xl mb-8">
+              <IconTransformerCoil className="w-8 h-8 text-[#F0A500]" />
             </div>
             <h2 className="font-heading font-bold text-white mb-4" style={{ fontSize: '33px' }}>
-              <span className="text-[#1B84FE]">Preencha o formulário</span><br />
+              <span className="text-[#F0A500]">Preencha o formulário</span><br />
               e faça um orçamento agora mesmo
             </h2>
             <p className="text-white/55 mb-10 max-w-xl mx-auto font-body" style={{ fontSize: '16px' }}>

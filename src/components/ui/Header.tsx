@@ -47,7 +47,7 @@ export function Header() {
               >
                 {link.label}
                 {active && (
-                  <span className="absolute bottom-0 left-4 right-4 h-[2px] rounded-full bg-[#1B84FE]" />
+                  <span className="absolute bottom-0 left-4 right-4 h-[2px] rounded-full bg-[#F0A500]" />
                 )}
               </Link>
             )

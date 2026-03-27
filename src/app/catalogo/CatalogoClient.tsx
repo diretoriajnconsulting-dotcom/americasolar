@@ -116,7 +116,7 @@ export default function CatalogoClient({ products }: CatalogoClientProps) {
               onClick={() => handleFilterType(value)}
               className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all cursor-pointer ${
                 filterType === value
-                  ? 'bg-[#1B84FE] text-black shadow-sm'
+                  ? 'bg-[#F0A500] text-black shadow-sm'
                   : 'bg-[#F1F5F9] text-[#4B5563] hover:bg-[#EBF3FF] hover:text-[#1B84FE]'
               }`}
             >
@@ -193,7 +193,7 @@ export default function CatalogoClient({ products }: CatalogoClientProps) {
               onClick={() => setCurrentPage(page)}
               className={`w-9 h-9 rounded-lg text-sm font-medium transition-all ${
                 page === safePage
-                  ? 'bg-[#1B84FE] text-black shadow-sm'
+                  ? 'bg-[#F0A500] text-black shadow-sm'
                   : 'bg-white border border-[#E2E8F0] text-[#4B5563] hover:border-[#1B84FE] hover:text-[#1B84FE]'
               }`}
             >
